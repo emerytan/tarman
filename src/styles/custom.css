@@ -1,0 +1,104 @@
+html {
+    background-color: rgb(16, 16, 16);
+    height: 100%;
+    width: 100%
+}
+
+body {
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    /* font-family: "Lucinda Console", Monaco, monospace; */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: rgb(56, 56, 56);
+    color: rgb(156, 156, 156);
+    height: 100%;
+    width: 100%
+}
+
+header,
+footer {
+    height: 6%;
+}
+
+nav {
+    background-color: rgb(8, 8, 8)
+}
+
+legend {
+    margin: 3px auto;
+    padding-top: 2px;
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+#main {
+    position: relative;
+    height: 75%;
+    border: 1px solid #808080;
+    border-radius: 10px;
+    background-color: rgb(8, 8, 8)
+}
+
+#mainContainer {
+    position: relative;
+    height: 100%;
+}
+
+#leftCont,
+#rightCont {
+    border: 1px solid #808080;
+    border-radius: 10px;
+}
+
+#t1transportsContainer,
+#t2transportsContainer
+ {
+    float: left;
+}
+
+#t1ControlsContainer,
+#t2ControlsContainer {
+    float: right;
+}
+
+#tape1status,
+#tape2status {
+    border: 1px solid cyan
+}
+
+
+p {
+    margin-bottom: 0
+}
+
+h1 {
+    padding: 5px 0;
+    font-size: 1.5em
+}
+
+#footerContainer {
+    position: relative;
+    height: 100%;
+    width: auto;
+    padding: 15px 0
+}
+
+#footerLeft {
+    text-align: left;
+}
+
+#footerMiddle {
+    text-align: center;
+}
+
+#footerRight {
+    text-align: right
+}
+
+/* bootstrap customizations */
+.btn {
+    text-align: left
+}
+
+.form-control {
+    margin-bottom: 8px
+}

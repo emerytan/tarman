@@ -1,0 +1,33 @@
+{
+  "name": "gc-rtr",
+  "version": "1.0.0",
+  "description": "LTFS Duplicator",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "rollup -c --watch",
+    "build": "mkdir -p build && rollup -c"
+  },
+  "author": "Emery Anderson",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^0.58.2",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-watch": "^4.3.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "electron": "^3.0.6",
+    "express": "^4.16.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "rollup-watch": "^4.3.1",
+    "socket.io": "^2.1.0",
+    "socket.io-client": "^2.1.0"
+  }
+}

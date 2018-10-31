@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./src/styles/custom.css">
+    <title>Luke's Tarman</title>
+</head>
+
+<body class="container-fluid">
+    <header class="row justify-content-md-center">
+        <h1 id="headerText">Tarball - Tarball - Tarball</h1>
+    </header>
+    <nav>
+        <div id="tapeStatus" class="col-6">
+            <p id="tape1stat"></p>
+            <p id="tape2stat"></p>
+        </div>
+    </nav>
+    <div id="main" class="container-fluid">
+        <div id="mainContainer" class="row">
+            <div id="leftCont" class="col-6">
+                <legend>Tape 1</legend>
+                <div id="t1transportsContainer" class="col-6">
+                    <legend>tar controls</legend>
+                    <button id="tape1load" class="btn btn-large btn-block btn-dark">Load</button>
+                    <button id="tape1stat" class="btn btn-large btn-block btn-dark">Status</button>
+                    <button id="tape1rew" class="btn btn-large btn-block btn-dark">Rewind</button>
+                    <button id="tape1eject" class="btn btn-large btn-block btn-dark">Eject</button>
+                    <br>
+                    <button id="tape1getDir" class="btn btn-large btn-block btn-dark">Get Directory</button>
+                    <br>
+                    <button id="tape1archive" class="btn btn-large btn-block btn-dark">Archive</button>
+                    <button id="tape1restore" class="btn btn-large btn-block btn-dark">Restore</button>
+                </div>
+                <div id="t1ControlsContainer" class="col-6">
+                    <legend>ltfs controls</legend>
+                    <form>
+                        <input class="form-control" type="text" id="ltfsBarCodes" placeholder="Enter Barcode">
+                    </form>
+                    <button id="tape1mount" class="btn btn-large btn-block btn-dark">Mount LTFS</button>
+                    <button id="tape1umount" class="btn btn-large btn-block btn-dark">unMount LTFS</button>
+                    <button id="tape1format" class="btn btn-large btn-block btn-dark">format LTFS</button>
+                    <div id="tape1status">
+                        <p id="tape1">tape 1 status: </p>
+                        <h6>Source Info</h6>
+                    </div>
+                </div>
+            </div>
+            <div id="rightCont" class="col-6">
+                <legend>Tape 2</legend>
+                <div id="t1transportsContainer" class="col-6">
+                    <legend>tar controls</legend>
+                    <button id="tape2load" class="btn btn-large btn-block btn-dark">Load</button>
+                    <button id="tape2stat" class="btn btn-large btn-block btn-dark">Status</button>
+                    <button id="tape2rew" class="btn btn-large btn-block btn-dark">Rewind</button>
+                    <button id="tape2eject" class="btn btn-large btn-block btn-dark">Eject</button>
+                    <br>
+                    <button id="tape2getDir" class="btn btn-large btn-block btn-dark">Get Directory</button>
+                    <br>
+                    <button id="tape2archive" class="btn btn-large btn-block btn-dark">Archive</button>
+                    <button id="tape2restore" class="btn btn-large btn-block btn-dark">Restore</button>
+                </div>
+                <div id="t2ControlsContainer" class="col-6">
+                    <legend>LTFS controls</legend>
+                    <form>
+                        <input class="form-control" type="text" id="ltfsBarCodes" placeholder="Enter Barcode">
+                    </form>
+                    <button id="tape2mount" class="btn btn-large btn-block btn-dark">Mount LTFS</button>
+                    <button id="tape2umount" class="btn btn-large btn-block btn-dark">unMount LTFS</button>
+                    <button id="tape2format" class="btn btn-large btn-block btn-dark">format LTFS</button>
+                    <div id="tape2status">
+                        <br>
+                        <p id="tape1">tape 1 status: </p>
+                        <h6>Source Info</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div id="footerContainer" class="row">
+            <div id="footerLeft" class="col">
+                <p id="ioState">text 1</p>
+            </div>
+            <div id="footerMiddle" class="col">
+                <h6 id="bashtag"></h6>
+            </div>
+            <div id="footerRight" class="col">
+                <p id="appMessages">text 3</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        require('./build/bundle.js')
+    </script>
+</body>
+
+</html>
