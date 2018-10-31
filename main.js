@@ -7,8 +7,8 @@ let mainWindow
 
 app.on('ready', function () {
 	mainWindow = new BrowserWindow({
-		width: 1000,
-		height: 800,
+		width: 1200,
+		height: 900,
 		'min-width': 800,
 		'min-height': 200,
 		'accept-first-mouse': true,
@@ -18,5 +18,4 @@ app.on('ready', function () {
 	mainWindow.on('closed', function () {
 		mainWindow = null
 	})
-	// mainWindow.webContents.openDevTools()
 })
