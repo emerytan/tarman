@@ -19,9 +19,6 @@ footer {
     height: 6%;
 }
 
-nav {
-    background-color: rgb(8, 8, 8)
-}
 
 legend {
     margin: 3px auto;
@@ -30,21 +27,25 @@ legend {
     color: #ddd;
 }
 
+pre {
+    color: #ddd;
+    font-size: .8em
+}
+
 #main {
-    position: relative;
-    height: 75%;
+    height: 86%;
     border: 1px solid #808080;
     border-radius: 10px;
     background-color: rgb(8, 8, 8)
 }
 
 #mainContainer {
-    position: relative;
     height: 100%;
 }
 
 #leftCont,
 #rightCont {
+    height: 60%;
     border: 1px solid #808080;
     border-radius: 10px;
 }
@@ -65,6 +66,14 @@ legend {
     border: 1px solid cyan
 }
 
+#shellCont1,
+#shellCont2 {
+    height: 37%;    
+    float: none;
+    overflow-x: auto;
+    overflow-y: scroll
+}
+
 
 p {
     margin-bottom: 0
@@ -76,7 +85,6 @@ h1 {
 }
 
 #footerContainer {
-    position: relative;
     height: 100%;
     width: auto;
     padding: 15px 0

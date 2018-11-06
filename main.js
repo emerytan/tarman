@@ -1,14 +1,15 @@
 const {
 	app,
-	BrowserWindow
+	BrowserWindow,
+	ipcMain
 } = require('electron')
 
 let mainWindow
 
 app.on('ready', function () {
 	mainWindow = new BrowserWindow({
-		width: 1000,
-		height: 800,
+		width: 1200,
+		height: 900,
 		'min-width': 800,
 		'min-height': 200,
 		'accept-first-mouse': true,
@@ -19,4 +20,9 @@ app.on('ready', function () {
 		mainWindow = null
 	})
 	// mainWindow.webContents.openDevTools()
+	
+})
+
+ipcMain.on('init', (event) => {
+	event.sender.send('app path', app.getAppPath())
 })

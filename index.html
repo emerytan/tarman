@@ -13,12 +13,6 @@
     <header class="row justify-content-md-center">
         <h1 id="headerText">Tarball - Tarball - Tarball</h1>
     </header>
-    <nav>
-        <div id="tapeStatus" class="col-6">
-            <p id="tape1stat"></p>
-            <p id="tape2stat"></p>
-        </div>
-    </nav>
     <div id="main" class="container-fluid">
         <div id="mainContainer" class="row">
             <div id="leftCont" class="col-6">
@@ -26,7 +20,7 @@
                 <div id="t1transportsContainer" class="col-6">
                     <legend>tar controls</legend>
                     <button id="tape1load" class="btn btn-large btn-block btn-dark">Load</button>
-                    <button id="tape1stat" class="btn btn-large btn-block btn-dark">Status</button>
+                    <button id="tape1getStat" class="btn btn-large btn-block btn-dark">Status</button>
                     <button id="tape1rew" class="btn btn-large btn-block btn-dark">Rewind</button>
                     <button id="tape1eject" class="btn btn-large btn-block btn-dark">Eject</button>
                     <br>
@@ -78,6 +72,12 @@
                     </div>
                 </div>
             </div>
+            <div id="shellCont1" class="col-6">
+                <pre id="shellOut1"></pre>
+            </div>
+            <div id="shellCont2" class="col-6">
+                <pre id="shellOut2"></pre>
+            </div>
         </div>
     </div>
     <footer>
@@ -94,7 +94,7 @@
         </div>
     </footer>
     <script>
-        require('./build/bundle.js')
+        require('./src/app')
     </script>
 </body>
 
