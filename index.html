@@ -13,6 +13,12 @@
     <header class="row justify-content-md-center">
         <h1 id="headerText">Tarball - Tarball - Tarball</h1>
     </header>
+    <nav>
+        <div id="tapeStatus" class="col-6">
+            <p id="tape1stat"></p>
+            <p id="tape2stat"></p>
+        </div>
+    </nav>
     <div id="main" class="container-fluid">
         <div id="mainContainer" class="row">
             <div id="leftCont" class="col-6">
@@ -70,7 +76,7 @@
                         <p id="tape1">tape 1 status: </p>
                         <h6>Source Info</h6>
                     </div>
-                </div>
+                </div>                
             </div>
             <div id="shellCont1" class="col-6">
                 <pre id="shellOut1"></pre>
@@ -81,9 +87,9 @@
         </div>
     </div>
     <footer>
-        <div id="footerContainer" class="row">
-            <div id="footerLeft" class="col">
-                <p id="ioState">text 1</p>
+        <div id="ftape1statow">
+            <div id="footerLeft">
+                <p id="ioState" class="col"></p>
             </div>
             <div id="footerMiddle" class="col">
                 <h6 id="bashtag"></h6>
@@ -94,7 +100,7 @@
         </div>
     </footer>
     <script>
-        require('./src/app')
+        require('./src/app.js')
     </script>
 </body>
 
