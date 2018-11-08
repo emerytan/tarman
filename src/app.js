@@ -1,6 +1,6 @@
 const ipc = require('electron').ipcRenderer
 const {
-	spawn
+	exec
 } = require('child_process')
 const path = require('path')
 
@@ -9,8 +9,7 @@ const headerText = document.getElementById('headerText')
 const ioState = document.getElementById('ioState')
 const appMessages = document.getElementById('appMessages')
 const bashtag = document.getElementById('bashtag')
-const shellOut1 = document.getElementById('shellOut1')
-const shellOut2 = document.getElementById('shellOut2')
+
 
 window.onload = function () {
 	headerText.innerText = 'Sixteen19 tarman the apeman'
@@ -27,14 +26,50 @@ ipc.on('app path', (event, message) => {
 	ioState.innerText = 'IPC connected'
 })
 
-document.getElementById('tape1getStat').addEventListener('click', () => {
-	console.log('clich')
-	ioState.innerText = 'click'
-	const ls = spawn('ls', ['-al', process.cwd()])
+let cmdButtons = document.getElementsByName('tapeCommands')
+for (var index = 0; index < cmdButtons.length; index++) {
+	cmdButtons[index].addEventListener('click', (event) => {
+		let commandInfo = event.target.dataset
+		tapeCommand(commandInfo.device, commandInfo.command, commandInfo.shell)
+	})
+}
 
-	ls.stdout.on('data', (data) => {
-		shellOut1.innerText = data.toString()
-		shellOut2.innerText = data.toString()
+function tapeCommand(drive, command, output) {
+	
+	let thisDrive
+
+	if (drive.indexOf(0) !== -1) {
+		thisDrive = document.getElementById('tape1')
+	} else {
+		thisDrive = document.getElementById('tape2')
+	}
+
+	thisDrive.innerText = `command: Tape ${drive.slice(8)} ${command}`
+	thisDrive.style.color = 'yellow'
+
+	let c = exec(`sudo mt -f ${drive} ${command}`, (error, stdout, stderr) => {
+		if (!error || !stderr) {
+			document.getElementById(output).innerText = stdout
+			appMessages.innerText = `${drive} ${command}`
+			appMessages.style.color = 'green'
+		} else {
+			document.getElementById(output).innerText = `stderr: ${stderr}`
+			document.getElementById(output).innerText = `error: ${error}`
+			ioState.innerText = `${drive} error`
+			ioState.style.color = '#d00'
+		}
 	})
 
-}, false)
+	c.on('close', (code) => {
+		
+		console.log(code)
+
+		if (code === 0) {
+			thisDrive.innerText = `${command} complete`
+			thisDrive.style.color = 'green'
+		} else {
+			thisDrive.innerText = `Tape ${drive.slice(8)} ${command} exited with code: ${code}`
+			thisDrive.style.color = 'red'
+		}
+	})
+}

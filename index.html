@@ -25,15 +25,15 @@
                 <legend>Tape 1</legend>
                 <div id="t1transportsContainer" class="col-6">
                     <legend>tar controls</legend>
-                    <button id="tape1load" class="btn btn-large btn-block btn-dark">Load</button>
-                    <button id="tape1getStat" class="btn btn-large btn-block btn-dark">Status</button>
-                    <button id="tape1rew" class="btn btn-large btn-block btn-dark">Rewind</button>
-                    <button id="tape1eject" class="btn btn-large btn-block btn-dark">Eject</button>
+                    <button id="tape1load" name="tapeCommands" data-device="/dev/nst0" data-command="load" data-shell="shellOut1" class="btn btn-large btn-block btn-dark">Load</button>
+                    <button id="tape1getStatus" name="tapeCommands" data-device="/dev/nst0" data-command="status" data-shell="shellOut1" class="btn btn-large btn-block btn-dark">Status</button>
+                    <button id="tape1rew" name="tapeCommands" data-device="/dev/nst0" data-command="rewind" data-shell="shellOut1" class="btn btn-large btn-block btn-dark">Rewind</button>
+                    <button id="tape1eject" name="tapeCommands" data-device="/dev/nst0" data-command="eject" data-shell="shellOut1" class="btn btn-large btn-block btn-dark">Eject</button>
                     <br>
                     <button id="tape1getDir" class="btn btn-large btn-block btn-dark">Get Directory</button>
                     <br>
-                    <button id="tape1archive" class="btn btn-large btn-block btn-dark">Archive</button>
-                    <button id="tape1restore" class="btn btn-large btn-block btn-dark">Restore</button>
+                    <button id="tape1archive" name="tapeCommands" data-device="/dev/nst0" data-command="archive" data-shell="shellOut1" class="btn btn-large btn-block btn-dark">Archive</button>
+                    <button id="tape1restore" name="tapeCommands" data-device="/dev/nst0" data-command="restore" data-shell="shellOut1" class="btn btn-large btn-block btn-dark">Restore</button>
                 </div>
                 <div id="t1ControlsContainer" class="col-6">
                     <legend>ltfs controls</legend>
@@ -44,8 +44,8 @@
                     <button id="tape1umount" class="btn btn-large btn-block btn-dark">unMount LTFS</button>
                     <button id="tape1format" class="btn btn-large btn-block btn-dark">format LTFS</button>
                     <div id="tape1status">
+                        <br>
                         <p id="tape1">tape 1 status: </p>
-                        <h6>Source Info</h6>
                     </div>
                 </div>
             </div>
@@ -53,15 +53,14 @@
                 <legend>Tape 2</legend>
                 <div id="t1transportsContainer" class="col-6">
                     <legend>tar controls</legend>
-                    <button id="tape2load" class="btn btn-large btn-block btn-dark">Load</button>
-                    <button id="tape2stat" class="btn btn-large btn-block btn-dark">Status</button>
-                    <button id="tape2rew" class="btn btn-large btn-block btn-dark">Rewind</button>
-                    <button id="tape2eject" class="btn btn-large btn-block btn-dark">Eject</button>
+                    <button id="tape2load" name="tapeCommands" data-device="/dev/nst1" data-command="load" data-shell="shellOut2" class="btn btn-large btn-block btn-dark">Load</button>
+                    <button id="tape2rew" name="tapeCommands" data-device="/dev/nst1" data-command="load" data-shell="shellOut2" class="btn btn-large btn-block btn-dark">Rewind</button>
+                    <button id="tape2eject" name="tapeCommands" data-device="/dev/nst1" data-command="load" data-shell="shellOut2" class="btn btn-large btn-block btn-dark">Eject</button>
                     <br>
                     <button id="tape2getDir" class="btn btn-large btn-block btn-dark">Get Directory</button>
                     <br>
-                    <button id="tape2archive" class="btn btn-large btn-block btn-dark">Archive</button>
-                    <button id="tape2restore" class="btn btn-large btn-block btn-dark">Restore</button>
+                    <button id="tape2archive" name="tapeCommands" data-device="/dev/nst1" data-command="archive" data-shell="shellOut2" class="btn btn-large btn-block btn-dark">Archive</button>
+                    <button id="tape2restore" name="tapeCommands" data-device="/dev/nst1" data-command="restore" data-shell="shellOut2" class="btn btn-large btn-block btn-dark">Restore</button>
                 </div>
                 <div id="t2ControlsContainer" class="col-6">
                     <legend>LTFS controls</legend>
@@ -73,8 +72,8 @@
                     <button id="tape2format" class="btn btn-large btn-block btn-dark">format LTFS</button>
                     <div id="tape2status">
                         <br>
-                        <p id="tape1">tape 1 status: </p>
-                        <h6>Source Info</h6>
+                        <legend>tape 2 status</legend>
+                        <p id="tape2"></p>
                     </div>
                 </div>                
             </div>
@@ -88,8 +87,8 @@
     </div>
     <footer>
         <div id="ftape1statow">
-            <div id="footerLeft">
-                <p id="ioState" class="col"></p>
+            <div id="footerLeft" class="col">
+                <p id="ioState"></p>
             </div>
             <div id="footerMiddle" class="col">
                 <h6 id="bashtag"></h6>

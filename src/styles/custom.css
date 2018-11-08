@@ -61,17 +61,13 @@ pre {
     float: right;
 }
 
-#tape1status,
-#tape2status {
-    border: 1px solid cyan
-}
 
 #shellCont1,
 #shellCont2 {
     height: 37%;    
     float: none;
     overflow-x: auto;
-    overflow-y: scroll
+    overflow-y: auto
 }
 
 
@@ -100,7 +96,7 @@ h1 {
 
 #footerRight {
     text-align: right
-}
+} 
 
 /* bootstrap customizations */
 .btn {
