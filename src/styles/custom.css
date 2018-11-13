@@ -80,14 +80,11 @@ h1 {
     font-size: 1.5em
 }
 
-#footerContainer {
-    height: 100%;
-    width: auto;
-    padding: 15px 0
-}
+
 
 #footerLeft {
     text-align: left;
+
 }
 
 #footerMiddle {
