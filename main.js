@@ -30,7 +30,8 @@ app.on('ready', function () {
 				element: 'tape1',
 				div: 'leftCont'
 			})
-		}, 1000);
+		}, 1000)
+
 
 		setTimeout(() => {
 			mainWindow.webContents.send('check drive', {
@@ -38,10 +39,9 @@ app.on('ready', function () {
 				element: 'tape2',
 				div: 'rightCont'
 			})
-		}, 2000);
-
-	
+		}, 2000)
 	})
+	
 })
 
 ipcMain.on('init', (event) => {

@@ -3,9 +3,11 @@ const {
 	dialog
 } = require('electron').remote
 const {
-	exec
+	exec,
+	spawn
 } = require('child_process')
 const path = require('path')
+const fs = require('fs')
 
 
 const headerText = document.getElementById('headerText')
@@ -13,7 +15,10 @@ const ioState = document.getElementById('ioState')
 const appMessages = document.getElementById('appMessages')
 const bashtag = document.getElementById('bashtag')
 const t1ArchiveSrc = document.getElementById('t1ArchiveSrc')
+const shellOut1 = document.getElementById('shellOut1')
+const tape1 = document.getElementById('tape1')
 var tape1Archive = {}
+var appPath
 
 
 
@@ -32,7 +37,11 @@ window.onload = function () {
 ipc.on('app path', (event, message) => {
 	appMessages.innerText = path.basename(message)
 	ioState.innerText = 'IPC connected'
+	appPath = message
+	console.log(appPath)
+	console.log(process.cwd());
 })
+
 
 
 
@@ -63,6 +72,25 @@ document.getElementById('tape1getDir').addEventListener('click', (event) => {
 		}
 	})
 })
+
+
+document.getElementById('tape1archive').addEventListener('click', (event) => {
+
+	let scriptPath = path.resolve(process.cwd(), 'bashScripts', 'runTape1.sh')
+	
+	fs.exists(scriptPath, (exists) => {
+		if (exists) {
+			runArchive(scriptPath, tape1Archive.srcPath, event.target.dataset.shell)
+		} else {
+			tape1.style.color = 'red'
+			tape1.innerText = 'path to script not valid'
+		}
+	})
+
+
+}, false)
+
+
 
 function tapeCommand(drive, command, output) {
 	
@@ -104,6 +132,7 @@ function tapeCommand(drive, command, output) {
 	})
 }
 
+
 function getSize(s, output) {
 	
 	let d = exec(`du -sh ${s} | cut -f1`, (error, stdout, stderr) => {
@@ -120,30 +149,70 @@ function getSize(s, output) {
 	})
 }
 
+
 function checkTape(element, drive, div) {
 	
 	let show = document.getElementById(element)
 
 	exec(`lsscsi | grep ${drive}`, (error, stdout, stderr) => {
-		if (stdout) {
-			appMessages.innerText = stdout
-			show.innerText = `${element} ready`
-			show.style.color = 'green'
-		}
-		if (stderr || error) {
-			show.innerText = `${element} not available`
-			show.style.color = 'red'
-			disableButtons(div)
-		}
-		
-	})
 
+		if (stderr || error) {
+			show.style.color = 'red'
+			show.innerText = `${element} not available`
+			disableButtons(div)
+		} else {
+			show.style.color = 'green'
+			show.innerText = `${element} ready`
+			shellOut1.innerText = stdout
+		}
+ 
+
+	})
 }
 
 function disableButtons(div) {
+	
 	let element = document.getElementById(div).getElementsByTagName('button')
 
 	for (let index = 0; index < element.length; index++) {
 		element[index].disabled = true
 	}
+}
+
+
+
+function runArchive(script, source, element) {
+	
+	let show = document.getElementById(element)
+	let b = path.basename(tape1Archive.srcPath)
+	
+	const t = spawn(script, [source])
+	tape1.style.color = 'cyan'
+	tape1.innerText = `archiving ${path.basename(source)}`
+	
+	t.stdout.on('data', (data) => {
+		shellOut1.style.color = 'green'
+		show.innerText += data
+	})
+	
+	t.stderr.on('data', (data) => {
+		show.style.color = 'yellow'
+		show.innerText = data
+	})
+	
+	t.on('error', (error) => {
+		show.style.color = 'red'
+		show.innerText += error
+	})
+	
+	t.on('close', (code) => {
+		if (code === 0) {
+			tape1.style.color = 'green'
+			tape1.innerText = `finished archiving ${b}`
+		} else {
+			tape1.style.color = 'yellow'
+			tape1.innerText = `error while arvhivig ${b}`
+		}
+	})
+
 }
