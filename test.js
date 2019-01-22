@@ -1,25 +1,46 @@
-const { spawn } = require('child_process')
+const net = require('net')
+const ipaddr = '10.208.79.51'
+var ioTable = {}
+var ioRegex = /(^[0-9]{1,2})\s([0-9]{1,2})/
+var chunk = ""
 
 
-
-const t = spawn('/usr/local/bin/runTape1.sh', ['/home/tarman/Downloads/cal_dpx'])
-
-
-
-t.stdout.on('data', (data) => {
-    console.log(data.toString())
+const bmdRouter = net.createConnection({
+        port: 9990,
+        host: ipaddr
+}, () => {
+        console.log('connected to router...')
 })
 
-t.stderr.on('data', (data) => {
-    console.log('stderr...')
-    console.log(data.toString());
+bmdRouter.on('connect', (socket) => {
+    console.log('connected')
 })
 
-
-t.on('close', (code) => {
-    if (code === 0) {
-        console.log(code);
-    } else {
-       console.log(`error: ${code}`);
+bmdRouter.on('data', (data) => {
+    chunk += data.toString()
+    var index = chunk.indexOf('\n')
+    while (index > -1) {
+        var line = chunk.substring(0, index)
+        chunk = chunk.substring(index + 1)
+        parseData(line)
+        index = chunk.indexOf('\n')
     }
+    chunk = ''
 })
+
+bmdRouter.on('error', (error) => {
+    console.log(error)
+})
+
+
+function parseData(z) {
+   var ioarr = ioRegex.exec(z)
+   if (ioarr !== null) ioTable[ioarr[1]] = ioarr[2]
+}
+
+
+setTimeout(() => {
+    console.log(ioTable)
+    bmdRouter.end()
+}, 5000);
+
